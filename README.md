@@ -8,6 +8,10 @@
 
 На странице вывести 3 последних поиска, причем они должны обновляться даже если я ищу в соседней вкладке
 
+## Demo
+
+https://golovanovya.github.io/hh-school-ajax/
+
 
 ## Installation
 
