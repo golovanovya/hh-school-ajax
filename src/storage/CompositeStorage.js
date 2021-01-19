@@ -5,6 +5,9 @@ module.exports = class CompositeStorage {
     }
 
     async find(name) {
+        if (name === '') {
+            return this._firstStorage.movies.slice(0, 5);
+        }
         const first = await this._firstStorage.find(name);
         const firstItems = first.slice(0, 5);
         const second = await this._secondStorage.find(name);

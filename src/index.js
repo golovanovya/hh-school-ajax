@@ -26,15 +26,15 @@ function renderSuggestions(results) {
         .reduce((acc, title) => `${acc}\r\n<li class="suggestion__item">${title}</li>`, '');
 }
 
-suggestionInput.addEventListener('keyup', async (e) => {
+async function find (e) {
     const search = e.target.value;
-    if (search === '') {
-        return true;
-    }
     const results = await api.find(search);
     renderSuggestions(results);
-    suggestionList.style.display = suggestionList.innerHTML !== '' ? 'block' : 'none';
-});
+    suggestionList.style.display = suggestionList.innerHTML ? 'block' : 'none';
+}
+
+suggestionInput.addEventListener('keyup', find);
+suggestionInput.addEventListener('click', find);
 
 document.addEventListener('click', e => {
     if ([...e.target.classList].indexOf('suggestion__input') >= 0) {
@@ -50,10 +50,3 @@ document.addEventListener('click', e => {
 
 storage.addListener(renderHistory);
 
-suggestionInput.addEventListener('click', (e) => {
-    const search = e.target.value;
-    if (search === '') {
-        return true;
-    }
-    suggestionList.style.display = suggestionList.innerHTML ? 'block' : 'none';
-});
